@@ -2,6 +2,12 @@
 Secure Shell sets up.An encrypted connection between two machines. Commands given on the first machine are executed on the second machine and output from the second machine is sent back to the first machine.
 The result is the ability to control a remote machine using the command line while keeping all your actions private from any attacker or snooper.
 
+In a normal work environment, you would set up a static IP address to avoid continually creating rules to allow access to your cloud machine.
+In our case, you will need to create another security rule allowing your home network to access your Azure VM.
+: If you need to reset your SSH key, you can do so in the VM details page by selecting 'Reset Password' on the left column
+GET YOUR SSH KEY FROM THR ANSIBLE CONTAINER ON YOUR JUMPBOX.
+
+
 
 
 #Generate a public key: ssh-keygen 
@@ -60,11 +66,11 @@ Create a YAML playbook file that you will use for your configuration
 Nano /etc/ansible/DVWA.yml
 Example: check ansible-playbook on ansibleVM-Web2.yml
 To test that DVWA is running on the new VM, SSH to the web2 from your Ansible container(JumBox)
-change the ansible hosts to your elkserver
+
 #Test your Ansible configuration with the Ansible ping command.
     Run ansible -m ping all
     Run ansible-playbook your-playbook.yml
-   Run ssh ansible@10.0.0.7
+   Run ssh ansible@10.0.0.6
    Run curl localhost/setup.php in the browser.
   
 
