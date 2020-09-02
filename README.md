@@ -138,3 +138,4 @@ nano hosts (update IP on[webservers][elkservers]
 nano ansible.cfg (remote_user to which server you want to use)
 run the playbook command: root@0e52a6c7f577:/etc/ansible# ansible-playbook roles/filebeat-playbook.yml
 see Ansible Dir. Ansible.cfg and Ansible-Hosts for configurations.
+change the ansible hosts to your elkserver and run sudo docker ps in the command line to see if sebp/elk: 761 is installed.
