@@ -2,7 +2,7 @@
 
 The files in this repository were used to configure the network depicted below.
 
-![TODO: Update the path with the name of your diagram](Images/diagram_filename.png)
+Diagrams:NetWork Topology
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the yaml file may be used to install only certain pieces of it, such as Filebeat.
 
@@ -36,7 +36,7 @@ These files have been tested and used to generate a live ELK deployment on Azure
 
 
 This document contains the following details:
-- Description of the Topologu
+- Description of the Topology
 - Access Policies
 - ELK Configuration
   - Beats in Use
@@ -49,9 +49,9 @@ This document contains the following details:
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
 Load balancing ensures that the application will be highly Available, in addition to restricting Permissions to the network.
--  What aspect of security do load balancers protect? If Web-1 goes down, traffic will go to web-2, and so on. Load balancer redirect traffic to the next available zone.
+-  What aspect of security do load balancers protect? If Web-1 goes down, traffic will go to web-2, and so on. Load balancer redirects traffic to the next available zone.
 
- What is the advantage of a jump box? JumpBox restrict IP Addresses access. Manage who log in and out.
+ What is the advantage of a jump box? JumpBox restricts IP Addresses access. Manage who log in and out.
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the Virtual Machine and system  logs.
 - What does Filebeat watch for? Its Manages, collect log files
@@ -124,13 +124,19 @@ SSH into the control node and follow the steps below:
 
   Answer the following questions to fill in the blanks:
 - Which file is the playbook? Where do you copy it? the filebeat 
-- Which file do you update to make Ansible run the playbook on a specific machine? We update The Hosts file Private IP ADDRESS and ansible.cfg to [remote user:sysadmin].How do I specify which machine to install the ELK server on versus which to install Filebeat on?
+- Which file do you update to make Ansible run the playbook on a specific machine? We update The Hosts file Private IP ADDRESS and ansible.cfg to [remote user:sysadmin].How do I specify which machine to install the ELK server on versus which to install Filebeat on?change hosts group name webservers or elk.
 - Which URL do you navigate to in order to check that the ELK server is running? http://<(YourIpAddress)>:5601/app/kibana#/home
 
 As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc.
 ssh jump@(IpAddress)
-docker run -ti container/ansible
+connect to the Ansible container in the box
+sudo docker container list -a
+Sudo docker container start [container name]
+sudo docker container attach [container name]
 change dir. /etc/ansible
-ssh-keygen to your web service
 nano hosts (update IP on[webservers][elkservers]
 nano ansible.cfg (remote_user to which server you want to use)
+run the playbook command: root@0e52a6c7f577:/etc/ansible# ansible-playbook roles/filebeat-playbook.yml
+see Ansible Dir. Ansible.cfg and Ansible-Hosts for configurations.
+
+
