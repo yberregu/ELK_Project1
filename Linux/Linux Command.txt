@@ -1,5 +1,5 @@
 #SSH
-Secure Shell sets up an encrypted connection between two machines. Commands given on the first machine are executed on the second machine and output from the second machine is sent back to the first machine.
+Secure Shell sets up.An encrypted connection between two machines. Commands given on the first machine are executed on the second machine and output from the second machine is sent back to the first machine.
 The result is the ability to control a remote machine using the command line while keeping all your actions private from any attacker or snooper.
 
 
