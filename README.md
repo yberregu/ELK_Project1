@@ -106,7 +106,7 @@ https://github.com/yberregu/ELK_Project1/blob/master/Diagrams/2.PNG
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
-- 10.0.0.4, 10.0.0.5, and 10.0.0.6
+- 10.0.0.4, 10.0.0.5, 10.0.0.6,10.0.0.7
 We have installed the following Beats on these machines:
 - filebeat.yml  -metricbeat.yml
 
