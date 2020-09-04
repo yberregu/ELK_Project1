@@ -21,7 +21,7 @@ These files have been tested and used to generate a live ELK deployment on Azure
 
   - name: drop in filebeat.yml
     copy:
-      src: /etc/ansible/files/filebeat-configuration.yml
+      src: /etc/ansible/filebeat-configuration.yml
       dest: /etc/filebeat/filebeat.yml
 
   - name: enable and configure system module
