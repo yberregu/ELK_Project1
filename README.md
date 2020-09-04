@@ -63,30 +63,30 @@ _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdow
 | Name     | Function | IP Address | Operating System |
 |----------|----------|------------|------------------|
 | Jump Box | Gateway  | 10.0.0.4   | Linux OS         |
-| Web-1    | DVWA     | 10.0.0.5   |                  |                              
-| Web-2    | DVWA     | 10.0.0.6   |                  |
-| DVWA-3   | DVWA     | 10.0.0.7   |                  |                             
-| ELK      |Server    | 10.1.0.4   | Linux OS         |
+| Web-1    | webserver| 10.0.0.5   |                  |                              
+| Web-2    | webserver| 10.0.0.6   |                  |
+| web-3    | webserver| 10.0.0.7   |                  |                             
+| ELK      | ElkServer| 10.1.0.4   | Linux OS         |
 
 ### Access Policies
 
 The machines on the internal network are not exposed to the public Internet. 
 
-Only the local Workstation machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
-- 159.250.76.226
+Only the elk sever can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
+- 159.250.76.226 tcp 5601.
 
-Machines within the network can only be accessed by JumpBox.
-- Machines allow to access your ELK VM are JumpBox and DVWA 
-What was its IP address? 10.0.0.4, 10.0.0.5, 10.0.0.6, AND 10.0.0.7
+Machines within the network can only be accessed by JumpBox and work station.
+- Machines allow to access your ELK VM are JumpBox and workstation port 5601.
+What was its IP address? 10.0.0.4, 159.250.76.226
 
 A summary of the access policies in place can be found in the table below.
 
 | Name     | Publicly Accessible | Allowed IP Addresses |
 |----------|---------------------|----------------------|
-| Jump Box | No                  | 10.0.0.5 10.0.0.6    |
-|          |                     |   10.0.0.7           |
-|          |                     |                      |
-|          |                     |                      |
+| Jump Box | No                  |10.0.0.4 ON SSH 22    |
+|   web-1  | no                  |10.0.0.4 on SSH 22    |
+|   WEB-2  | NO                  |10.0.0.4 on SSH 22    |
+| ELK      | NO                  |Workstation PIP ON 5601|
 
 ### Elk Configuration
 
@@ -94,12 +94,18 @@ Ansible was used to automate configuration of the ELK machine. No configuration 
 - Ansible playbook 
 The playbook implements the following tasks automatically in seconds:
 - apt install docker.io
--docker pull sepb/elk
-- docker run into your ansible
-- change the ansible hosts to your elkserver
--change the ansible remote user to your sysadmin.
--create a yaml script to make connection to the elk application
--make sure your ports are connected to 5601,9200 and 5044
+-python3-pip
+ -Specify a different group of machines as well as a different remote user
+  - name: Config elk VM with Docker
+    hosts: elk
+    remote_user: sysadmin
+    become: true
+    tasks:
+ -Launching and Exposing the container with these published ports:
+ `5601:5601` 
+ `9200:9200`
+ `5044:5044`
+
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 - sudo docker ps
 
@@ -107,25 +113,31 @@ https://github.com/yberregu/ELK_Project1/blob/master/Diagrams/2.PNG
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
-- 10.0.0.4, 10.0.0.5, 10.0.0.6,10.0.0.7
+- 10.0.0.5, 10.0.0.6,10.0.0.7
 We have installed the following Beats on these machines:
 - filebeat.yml  -metricbeat.yml
 
 These Beats allow us to collect the following information from each machine:
-- Filebeat collects data about the file system
+- Filebeat collects data about the file system, log events.
 - Metricbeat collects machine metrics, such as uptime.
 CPU usage: The heavier the load on a machine's CPU, the more likely it is to fail.
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the ssh-keygen file to ssh public key.
+- Copy the /etc/ansible/files/filebeat-config.yml file to '/etc/filebeat/filebeat-playbook.yml'.
 - Update the security rules file to include IP address
 - Run the playbook, and navigate to terminal to check that the installation worked as expected.
 
   Answer the following questions to fill in the blanks:
 - Which file is the playbook? Where do you copy it? the filebeat{filebeat-configuration.yml}, to webservers filebeat dir.
-- Which file do you update to make Ansible run the playbook on a specific machine? We update The Hosts file Private IP ADDRESS and ansible.cfg to [remote user:sysadmin]. How do I specify which machine to install the ELK server on versus which to install Filebeat on? change host installation hosts to either webservers or elk.
+- Which file do you update to make Ansible run the playbook on a specific machine? We update nano filebeat-config.yml, hosts: ["10.1.0.4:9200"]
+  username: "elastic"
+  password: "changeme” 
+
+ setup.kibana:
+  host: "10.1.0.4:5601". 
+  -How do I specify which machine to install the ELK server on versus which to install Filebeat on? change host installation hosts to either webservers or elk.
 - Which URL do you navigate to in order to check that the ELK server is running? http://<(YourIpAddress)>:5601/app/kibana#/home
 
 As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc.
