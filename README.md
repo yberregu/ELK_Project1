@@ -65,7 +65,7 @@ _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdow
 | Jump Box | Gateway  | 10.0.0.4   | Linux OS         |
 | Web-1    | webserver| 10.0.0.5   |                  |                              
 | Web-2    | webserver| 10.0.0.6   |                  |
-| web-3    | webserver| 10.0.0.7   |                  |                             
+|          |          |            |                  |                             
 | ELK      | ElkServer| 10.1.0.4   | Linux OS         |
 
 ### Access Policies
