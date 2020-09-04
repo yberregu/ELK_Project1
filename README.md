@@ -36,7 +36,7 @@ These files have been tested and used to generate a live ELK deployment on Azure
 
 
 This document contains the following details:
-- Description of the Topologu
+- Description of the Topology
 - Access Policies
 - ELK Configuration
   - Beats in Use
@@ -92,12 +92,12 @@ A summary of the access policies in place can be found in the table below.
 
 Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because...
 - Ansible playbook 
-The playbook implements the following tasks:
+The playbook implements the following tasks automatically in seconds:
 - apt install docker.io
 -docker pull sepb/elk
 - docker run into your ansible
 - change the ansible hosts to your elkserver
--change the ansible remote user to your host name.
+-change the ansible remote user to your sysadmin.
 -create a yaml script to make connection to the elk application
 -make sure your ports are connected to 5601,9200 and 5044
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
@@ -124,7 +124,7 @@ SSH into the control node and follow the steps below:
 - Run the playbook, and navigate to terminal to check that the installation worked as expected.
 
   Answer the following questions to fill in the blanks:
-- Which file is the playbook? Where do you copy it? the filebeat 
+- Which file is the playbook? Where do you copy it? the filebeat, webservers
 - Which file do you update to make Ansible run the playbook on a specific machine? We update The Hosts file Private IP ADDRESS and ansible.cfg to [remote user:sysadmin].How do I specify which machine to install the ELK server on versus which to install Filebeat on? change host installation hosts to either webservers or elk.
 - Which URL do you navigate to in order to check that the ELK server is running? http://<(YourIpAddress)>:5601/app/kibana#/home
 
@@ -137,6 +137,6 @@ sudo docker container attach [container name]
 change dir. /etc/ansible
 nano hosts (update IP on[webservers][elkservers]
 nano ansible.cfg (remote_user to which server you want to use)
-run the playbook command: root@0e52a6c7f577:/etc/ansible# ansible-playbook roles/filebeat-playbook.yml
+run the playbook command: root@0e52a6c7f577:/etc/ansible/roles# ansible-playbook filebeat-playbook.yml
 see Ansible Dir. Ansible.cfg and Ansible-Hosts for configurations.
 change the ansible hosts to your elkserver and run sudo docker ps in the command line to see if sebp/elk: 761 is installed.
