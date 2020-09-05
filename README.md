@@ -126,19 +126,14 @@ In order to use the playbook, you will need to have an Ansible control node alre
 
 SSH into the control node and follow the steps below:
 - Copy the /etc/ansible/files/filebeat-config.yml file to '/etc/filebeat/filebeat-playbook.yml'.
-- Update the security rules file to include IP address
-- Run the playbook, and navigate to terminal to check that the installation worked as expected.
+- Update the security rules file to include IP address/Update the /etc/ansible/hosts file to include ports
+- Run the playbook, and navigate to: 5601 to check that the installation worked as expected.
 
   Answer the following questions to fill in the blanks:
-- Which file is the playbook? Where do you copy it? the filebeat{filebeat-configuration.yml}, to webservers filebeat dir.
-- Which file do you update to make Ansible run the playbook on a specific machine? We update nano filebeat-config.yml, 
-  hosts: ["10.1.0.4:9200"]
-  username: "elastic"
-  password: "changeme” 
+- Which file is the playbook? Where do you copy it? the filebeat{filebeat-playbook.yml}, to /roles/filebeat.yml
+- Which file do you update to make Ansible run the playbook on a specific machine? We update nano  /etc/ansible/hosts.
 
- setup.kibana:
-  host: "10.1.0.4:5601". 
-  -How do I specify which machine to install the ELK server on versus which to install Filebeat on? c host installation hosts to either webservers or elk.
+  -How do I specify which machine to install the ELK server on versus which to install Filebeat on? change hosts configuration to either webservers or elk.
 - Which URL do you navigate to in order to check that the ELK server is running? http://<(YourIpAddress)>:5601/app/kibana#/home
 
 As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc.
