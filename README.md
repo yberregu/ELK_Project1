@@ -5,7 +5,8 @@ https://github.com/yberregu/ELK_Project1/blob/master/Diagrams/NetWork%20Topology
 
 
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the yaml file may be used to install only certain pieces of it, such as Filebeat.
-
+https://github.com/yberregu/ELK_Project1/blob/master/Ansible/filebeat-playbook.yml
+see Ansible files...
   ---
 - name: installing and launching filebeat
   hosts: webservers
