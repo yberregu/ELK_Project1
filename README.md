@@ -48,12 +48,12 @@ This document contains the following details:
 
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
-Load balancing ensures that the application will be highly Available, in addition to restricting Permissions to the network.
+Load balancing ensures that the application will be highly Available, in addition to restricting Traffic to the network.
 -  What aspect of security do load balancers protect? If Web-1 goes down, traffic will go to web-2, and so on. Load balancer redirects traffic to the next available zone.
 
- What is the advantage of a jump box? JumpBox restricts IP Addresses access. Manage who log in and out.
+ What is the advantage of a jump box? JumpBox restricts IP Addresses access,access control.Manages who log in and out.
 
-Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the Virtual Machine and system  logs.
+Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the data and system logs.
 - What does Filebeat watch for? Its Manages, collect log files
 -  What does Metricbeat record? It records system and CPU memory using elasticsearch.
 
@@ -75,7 +75,7 @@ The machines on the internal network are not exposed to the public Internet.
 Only the elk sever can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
 - 159.250.76.226 tcp 5601.
 
-Machines within the network can only be accessed by JumpBox and work station.
+Machines within the network can only be accessed by JumpBox and the workstation.
 - Machines allow to access your ELK VM are JumpBox and workstation port 5601.
 What was its IP address? 10.0.0.4, 159.250.76.226
 
@@ -131,13 +131,14 @@ SSH into the control node and follow the steps below:
 
   Answer the following questions to fill in the blanks:
 - Which file is the playbook? Where do you copy it? the filebeat{filebeat-configuration.yml}, to webservers filebeat dir.
-- Which file do you update to make Ansible run the playbook on a specific machine? We update nano filebeat-config.yml, hosts: ["10.1.0.4:9200"]
+- Which file do you update to make Ansible run the playbook on a specific machine? We update nano filebeat-config.yml, 
+  hosts: ["10.1.0.4:9200"]
   username: "elastic"
   password: "changeme” 
 
  setup.kibana:
   host: "10.1.0.4:5601". 
-  -How do I specify which machine to install the ELK server on versus which to install Filebeat on? change host installation hosts to either webservers or elk.
+  -How do I specify which machine to install the ELK server on versus which to install Filebeat on? c host installation hosts to either webservers or elk.
 - Which URL do you navigate to in order to check that the ELK server is running? http://<(YourIpAddress)>:5601/app/kibana#/home
 
 As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc.
