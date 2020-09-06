@@ -64,30 +64,31 @@ _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdow
 | Name     | Function | IP Address | Operating System |
 |----------|----------|------------|------------------|
 | Jump Box | Gateway  | 10.0.0.4   | Linux OS         |
-| Web-1    | webserver| 10.0.0.5   |                  |                              
-| Web-2    | webserver| 10.0.0.6   |                  |
+| Web-1    | Webserver| 10.0.0.5   |                  |                              
+| Web-2    | Webserver| 10.0.0.6   |                  |
 |          |          |            |                  |                             
-| ELK      | ElkServer| 10.1.0.4   | Linux OS         |
+| ELK      | LogServer| 10.1.0.4   | Linux OS         |
 
 ### Access Policies
 
 The machines on the internal network are not exposed to the public Internet. 
 
-Only the elk sever can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
-- 159.250.76.226 tcp 5601.
+Only the JumpBox can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
+- Personal IP address.
 
-Machines within the network can only be accessed by JumpBox and the workstation.
-- Machines allow to access your ELK VM are JumpBox and workstation port 5601.
+Machines within the network can only be accessed by SSH.from inside jumpbox Ansible.
+- Machines allow to access your ELK VM are JumpBox and workstation on port 5601.
 What was its IP address? 10.0.0.4, 159.250.76.226
 
 A summary of the access policies in place can be found in the table below.
 
-| Name     | Publicly Accessible | Allowed IP Addresses      |
-|----------|---------------------|---------------------------|
-| Jump Box | No                  |10.0.0.4 ON SSH 22         |
-|   web-1  | No                  |10.0.0.4 on SSH 22         |
-|   WEB-2  | No                  |10.0.0.4 on SSH 22         |
-| ELK      | No                  |Workstation Pup. IP ON 5601|
+| Name     | Publicly Accessible | Allowed IP Addresses       |
+|----------|---------------------|----------------------------|
+| Jump Box | no                  |-personal IP                |
+|   web-1  | yes,via loadbalancer|-10.0.0.4 on SSH 22. LB IP. |
+|   WEB-2  | yes,via loadbalancer|-10.0.0.4 on SSH 22. LB IP.  |
+| ELK      | No                  |-Workstation Pup. IP ON 5601|
+           |                      |and jumpBox 10.0.0.4       | 
 
 ### Elk Configuration
 
@@ -122,15 +123,16 @@ CPU usage: The heavier the load on a machine's CPU, the more likely it is to fai
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the /etc/ansible/files/filebeat-config.yml file to '/etc/filebeat/filebeat-playbook.yml'.
-- Update the security rules file to include IP address/Update the /etc/ansible/hosts file to include ports
+- Copy the filebeat-configuration.yml file to /etc/ansible/roles/files.
+- Update the security rules file to include IP address/Update the /etc/ansible/hosts file to include the elk server VM and Webservers.Also Update the filebeat-configuration.yml file to include the ELK private IP in lines 1106 and 1806.
 - Run the playbook, and navigate to:ELK-Server-PublicIP:5601/app/kibana to check that the installation worked as expected.
 
   Answer the following questions to fill in the blanks:
-- Which file is the playbook? Where do you copy it? the filebeat{filebeat-playbook.yml}, to /roles/filebeat.yml
-- Which file do you update to make Ansible run the playbook on a specific machine? We update nano  /etc/ansible/hosts.
+- Which file is the playbook?The filebeat-playbook.yml Where do you copy it? copy to /etc/ansible/roles.
+- Which file do you update to make Ansible run the playbook on a specific machine? We update  nano /etc/ansible/hosts.(IP of the Virtual Machines)
 
   -How do I specify which machine to install the ELK server on versus which to install Filebeat on? change hosts configuration to either webservers or elk.
+I have to specify two separate groups in the etc/ansible/hosts file. One of the groups will be webservers which has the IPs of the VMs that I will install Filebeat to. The other group is named elkservers which will have the IP of the VM I will install ELK to.
 - Which URL do you navigate to in order to check that the ELK server is running? http://<(YourIpAddress)>:5601/app/kibana#/home
 
 As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc.
