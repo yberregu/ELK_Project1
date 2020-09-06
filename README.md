@@ -52,7 +52,7 @@ The main purpose of this network is to expose a load-balanced and monitored inst
 Load balancing ensures that the application will be highly Available, in addition to restricting Traffic to the network.
 -  What aspect of security do load balancers protect? If Web-1 goes down, traffic will go to web-2, and so on. Load balancer redirects traffic to the next available zone.
 
- What is the advantage of a jump box? JumpBox restricts IP Addresses access,access control.Manages who log in and out.
+ What is the advantage of a jump box? JumpBox restricts IP Addresses access,access control.Manages who log in and out. Administrators are required to access the JumpBox before accessing the other servers.
 
 Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the data and system logs.
 - What does Filebeat watch for? Its Manages, collect log files
@@ -92,17 +92,13 @@ A summary of the access policies in place can be found in the table below.
 ### Elk Configuration
 
 Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because...
-- Ansible playbook 
-The playbook implements the following tasks automatically in seconds:
-- apt install docker.io
--python3-pip
- -Specify a different group of machines as well as a different remote user
-  - name: Config elk VM with Docker
-    hosts: elk
-    remote_user: sysadmin
-    become: true
-    tasks:
- -Launching and Exposing the container with these published ports:
+- Ansible playbook implements the following tasks automatically in seconds, without without having to physically touch each server.
+
+ - apt install docker.io 
+ - python3-pip
+ - Download and Configure elk docker container
+ - Increases VM memory
+ - Launching and Exposing the container with these published ports:
  `5601:5601` 
  `9200:9200`
  `5044:5044`
@@ -128,7 +124,7 @@ In order to use the playbook, you will need to have an Ansible control node alre
 SSH into the control node and follow the steps below:
 - Copy the /etc/ansible/files/filebeat-config.yml file to '/etc/filebeat/filebeat-playbook.yml'.
 - Update the security rules file to include IP address/Update the /etc/ansible/hosts file to include ports
-- Run the playbook, and navigate to: 5601 to check that the installation worked as expected.
+- Run the playbook, and navigate to:ELK-Server-PublicIP:5601/app/kibana to check that the installation worked as expected.
 
   Answer the following questions to fill in the blanks:
 - Which file is the playbook? Where do you copy it? the filebeat{filebeat-playbook.yml}, to /roles/filebeat.yml
