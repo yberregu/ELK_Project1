@@ -86,9 +86,9 @@ A summary of the access policies in place can be found in the table below.
 |----------|---------------------|----------------------------|
 | Jump Box | no                  |-personal IP                |
 |   web-1  | yes,via loadbalancer|-10.0.0.4 on SSH 22. LB IP. |
-|   WEB-2  | yes,via loadbalancer|-10.0.0.4 on SSH 22. LB IP.  |
+|   WEB-2  | yes,via loadbalancer|-10.0.0.4 on SSH 22. LB IP. |
 | ELK      | No                  |-Workstation Pup. IP ON 5601|
-           |                      |and jumpBox 10.0.0.4       | 
+|          |                     |and jumpBox 10.0.0.4        | 
 
 ### Elk Configuration
 
