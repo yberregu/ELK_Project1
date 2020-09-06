@@ -64,8 +64,8 @@ _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdow
 | Name     | Function | IP Address | Operating System |
 |----------|----------|------------|------------------|
 | Jump Box | Gateway  | 10.0.0.4   | Linux OS         |
-| Web-1    | Webserver| 10.0.0.5   |                  |                              
-| Web-2    | Webserver| 10.0.0.6   |                  |
+| Web-1    | Webserver| 10.0.0.5   |   SAME           |                              
+| Web-2    | Webserver| 10.0.0.6   |   SAME           |
 |          |          |            |                  |                             
 | ELK      | LogServer| 10.1.0.4   | Linux OS         |
 
