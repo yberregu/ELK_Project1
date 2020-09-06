@@ -85,9 +85,9 @@ A summary of the access policies in place can be found in the table below.
 | Name     | Publicly Accessible | Allowed IP Addresses      |
 |----------|---------------------|---------------------------|
 | Jump Box | No                  |10.0.0.4 ON SSH 22         |
-|   web-1  | no                  |10.0.0.4 on SSH 22         |
-|   WEB-2  | NO                  |10.0.0.4 on SSH 22         |
-| ELK      | NO                  |Workstation Pup. IP ON 5601|
+|   web-1  | No                  |10.0.0.4 on SSH 22         |
+|   WEB-2  | No                  |10.0.0.4 on SSH 22         |
+| ELK      | No                  |Workstation Pup. IP ON 5601|
 
 ### Elk Configuration
 
